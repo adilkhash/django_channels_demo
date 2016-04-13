@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>real time django chat with Django Channels</title>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var msgArea = $('#msgArea')
+            var elementMessage = $('#message')
+            var webSocket = new WebSocket('ws://' + window.location.host + '/chat/index');
+
+            webSocket.onmessage = function(message) {
+                var data = JSON.parse(message.data)
+                msgArea.append('<p><strong>'+ data.sender + '</strong>: ' + data.message + '</p>')
+            }
+            $('#btnSubmit').click(function(e) {
+                webSocket.send(elementMessage.val())
+            })
+        })
+    </script>
+</head>
+<body>
+
+<div id="msgArea"></div>
+
+<div>
+    <textarea name="message" id="message" cols="30" rows="10"></textarea>
+</div>
+
+<button id="btnSubmit">Submit</button>
+</body>
+</html>

@@ -91,10 +91,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-# In settings.py
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'asgiref.inmemory.ChannelLayer',
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('localhost', 6379)],
+        },
         'ROUTING': 'blog_channels.routing.channel_routing',
     },
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

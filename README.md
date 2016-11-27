@@ -2,6 +2,7 @@
 Demonstration of Django Channels using WebSocket
 
 Please, follow this commands::
+      
       python manage.py migrate
 
       redis-server

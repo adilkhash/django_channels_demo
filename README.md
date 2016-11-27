@@ -2,10 +2,10 @@
 Demonstration of Django Channels using WebSocket
 
 Please, follow this commands::
-  python manage.py migrate
+      python manage.py migrate
 
-  redis-server
+      redis-server
 
-  daphne blog_channels.asgi:channel_layer --port 8000
+      daphne blog_channels.asgi:channel_layer --port 8000
 
-  python manage.py runworker -v2
+      python manage.py runworker -v2
